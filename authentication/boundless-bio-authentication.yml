@@ -1,0 +1,15 @@
+generated: '2026-08-08'
+method: derived
+source: openapi/boundless-bio-content-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: WordPress Application Passwords, advertised by the site at https://boundlessbio.com/wp-json/
+    under authentication.application-passwords; authorization endpoint https://boundlessbio.com/wp-admin/authorize-application.php.
+    Read operations on wp/v2 are anonymous.
+  sources:
+  - openapi/boundless-bio-content-openapi.yml

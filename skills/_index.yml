@@ -1,0 +1,58 @@
+generated: '2026-08-08'
+method: generated
+source: openapi/boundless-bio-content-openapi.yml
+note: >-
+  Packaged Agent Skills for the only public API surface Boundless Bio exposes — the WordPress REST
+  content API behind boundlessbio.com. Every operationId referenced below exists verbatim in
+  openapi/boundless-bio-content-openapi.yml, which is itself derived from the provider's live route
+  index and verified against anonymous responses on 2026-08-08. Boundless Bio publishes no AGENTS.md
+  and no skill files of its own; these are API Evangelist generations. There is no write flow to
+  package — every write route on the surface requires an authenticated WordPress user.
+skills:
+- file: boundless-bio-read-leadership-directory.md
+  name: Read the Boundless Bio leadership directory
+  description: >-
+    Enumerate the 27 published Leadership records — executive team, board of directors and
+    scientific / clinical advisors — with biographies, job titles, headshots and LinkedIn URLs,
+    including why the category taxonomy covers only 13 of the 27 and must not be used as a role
+    filter.
+  api: openapi/boundless-bio-content-openapi.yml
+  operations: [getWhoWeAre, getWhoWeAreById, getCategories, getMediaById]
+- file: boundless-bio-read-corporate-pages.md
+  name: Read Boundless Bio corporate pages (the acf.modules trap)
+  description: >-
+    Read the 9 published corporate pages, working around the deployment's defining quirk —
+    content.rendered is an empty string on every page and the real copy is served in the public ACF
+    flexible-content modules array.
+  api: openapi/boundless-bio-content-openapi.yml
+  operations: [getPages, getPagesById, getTypes, getSearch]
+- file: boundless-bio-harvest-scientific-media.md
+  name: Harvest Boundless Bio scientific posters and media
+  description: >-
+    Enumerate the 255-item media library to find the company's scientific PDFs — conference posters
+    and publication assets stored with no parent page, reachable only by enumeration — and pick the
+    right size variant for imagery.
+  api: openapi/boundless-bio-content-openapi.yml
+  operations: [getMedia, getMediaById, getPages]
+excluded_surfaces:
+- operations: [getUsers, getUsersById]
+  path: /wp/v2/users
+  reason: >-
+    DELIBERATE OMISSION, recorded so it reads as a decision rather than an oversight. On this
+    deployment /wp/v2/users answers ANONYMOUSLY with HTTP 200 (most WordPress sites return 401),
+    disclosing the display names and author-archive slugs of four internal CMS staff accounts.
+    These are not the published executive bios in the Leadership collection — they are internal
+    accounts. Documenting the exposure is legitimate research and it is recorded structurally in
+    data-model/boundless-bio-data-model.yml with no individual named; packaging it as an agent
+    skill with working pagination would be shipping the exploit. No skill enumerates it, no example
+    payload was captured from it, and no MCP tool is derived for it.
+- operations: [getSettings]
+  path: /wp/v2/settings
+  reason: Gated — returns 401 rest_forbidden anonymously. Nothing to package.
+- operations: [createWhoWeAre, updateWhoWeAreById, deleteWhoWeAreById, createPages, createMedia]
+  path: every write route
+  reason: >-
+    All write operations require an authenticated WordPress user (Application Password over HTTP
+    Basic, or a logged-in cookie plus X-WP-Nonce). They are modelled in the OpenAPI for
+    completeness but there is no anonymous flow to package, and this is a third-party profile of a
+    site API Evangelist does not operate.

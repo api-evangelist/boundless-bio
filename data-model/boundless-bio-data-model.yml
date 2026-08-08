@@ -1,0 +1,196 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/boundless-bio-content-openapi.yml + live anonymous responses observed 2026-08-08
+note: >-
+  Entity-relationship graph derived from the schema $refs and the id-reference fields in the
+  Boundless Bio content OpenAPI. Identifiers are plain auto-increment integers — WordPress uses
+  no prefixed id scheme — and every relationship below was confirmed against a live response.
+identifiers:
+  scheme: integer
+  detail: >-
+    All objects share one wp_posts identifier space: pages, Leadership records and media
+    attachments cannot collide. Taxonomy terms live in a separate term space, so a category id
+    and a post id may share a number.
+entities:
+- name: LeadershipProfile
+  collection: /wp/v2/who-we-are
+  operations: [getWhoWeAre, getWhoWeAreById]
+  count_observed: 27
+  description: >-
+    The `who-we-are` custom post type, registered with the label "Leadership". The single
+    highest-value collection on this surface: the executive team, board of directors and
+    scientific / clinical advisors, each with a full rendered biography, a job title, a headshot
+    and a LinkedIn URL. Unlike the `page` type, `content.rendered` IS populated here (1,304
+    characters on the sampled record).
+  key_fields: [id, slug, title, content, excerpt, date, modified, status, link, categories, tags,
+    featured_media, better_featured_image, acf, class_list]
+  acf_fields:
+  - {name: title, type: html string, meaning: job title, e.g. "<p>Chief Medical Officer</p>"}
+  - {name: under_bio_text, type: string, meaning: optional text rendered beneath the biography}
+  - {name: linkedin, type: link object, fields: [title, url, target], populated_on: 27 of 27 records}
+  - {name: twitter, type: link object or empty string}
+- name: Page
+  collection: /wp/v2/pages
+  operations: [getPages, getPagesById]
+  count_observed: 9
+  description: >-
+    A corporate page. Published slugs at harvest: homepage, why-we-are-here, what-we-do,
+    who-we-are, publications, work-with-us, contact, terms-of-use, privacy-policy.
+  key_fields: [id, slug, title, content, excerpt, parent, menu_order, date, modified, link,
+    featured_media, template, meta, acf]
+  caution: >-
+    content.rendered and excerpt.rendered are EMPTY on every page. The body is in
+    `acf.modules` — an ACF flexible-content array whose entries are keyed by `acf_fc_layout`
+    (hero, ...) and whose image fields are resolved to full attachment objects. See
+    conventions/boundless-bio-conventions.yml#content_representation.
+- name: Post
+  collection: /wp/v2/posts
+  operations: [getPosts, getPostsById]
+  count_observed: 0
+  description: >-
+    The core WordPress post type. Registered and reachable, but EMPTY — X-WP-Total is 0 and the
+    RSS feed at /feed/ carries zero items. Boundless Bio runs no blog on this host; corporate
+    news lives on the separate investor-relations site. Modelled so the surface is complete, not
+    because it carries data.
+  key_fields: [id, slug, title, content, excerpt, date, modified, status, link, categories, tags,
+    author, featured_media]
+- name: MediaItem
+  collection: /wp/v2/media
+  operations: [getMedia, getMediaById]
+  count_observed: 255
+  description: >-
+    A media library attachment. Beyond corporate imagery and headshots this collection holds the
+    company's scientific PDFs — e.g. an AACR 2026 conference poster — so it is the richest
+    source of primary material on the surface. media_type is `file` for PDFs and `image` for
+    imagery.
+  key_fields: [id, slug, title, source_url, mime_type, media_type, media_details, filesize, post,
+    alt_text, caption, description]
+- name: Term
+  collection: /wp/v2/categories and /wp/v2/tags
+  operations: [getCategories, getCategoriesById, getTags, getTagsById]
+  count_observed: 4
+  description: >-
+    A taxonomy term. Four categories are registered — Board of Directors (4), Leadership (4),
+    Scientific / Clinical Advisors (slug `scientific-founders`, 5) and Uncategorized (0). Note
+    the slug and the display name diverge on the advisors term. The post_tag taxonomy is
+    registered but empty.
+  key_fields: [id, slug, name, taxonomy, parent, count, link]
+  caution: >-
+    The three populated categories account for only 13 of the 27 Leadership records. The other
+    14 return `categories: []` and cannot be segmented by role group through the taxonomy at
+    all — they must be read from the `acf.title` job title instead. An agent that filters
+    Leadership by category will silently see about half the team.
+- name: SearchResult
+  collection: /wp/v2/search
+  operations: [getSearch]
+  description: >-
+    A lightweight pointer returned by cross-content search. Not a stored entity — it must be
+    resolved back to a LeadershipProfile, Page or MediaItem by its id and subtype. Observed
+    returning `type: post` with `subtype: who-we-are`.
+  key_fields: [id, title, url, type, subtype, _links.self]
+- name: PostType
+  collection: /wp/v2/types
+  operations: [getTypes, getTypesByType]
+  count_observed: 12
+  description: >-
+    A registered content type. Beyond WordPress core the only custom type is `who-we-are`.
+  key_fields: [slug, name, rest_base, rest_namespace, taxonomies, hierarchical]
+- name: Taxonomy
+  collection: /wp/v2/taxonomies
+  operations: [getTaxonomies, getTaxonomiesByTaxonomy]
+  count_observed: 4
+  description: A registered taxonomy — category, post_tag, nav_menu, wp_pattern_category.
+  key_fields: [slug, name, types, rest_base, hierarchical]
+- name: User
+  collection: /wp/v2/users
+  operations: [getUsers, getUsersById]
+  count_observed: 4
+  description: >-
+    The CMS author entity. READABLE ANONYMOUSLY on this deployment — unlike most WordPress sites
+    in this catalog, /wp/v2/users returns 200 rather than 401, exposing the display name and
+    author-archive slug of four internal WordPress accounts. These are staff CMS accounts, not
+    the published executive bios in LeadershipProfile. Documented structurally here as an
+    exposure; no individual is named in this repository, no example payload for this collection
+    was captured, and no agent skill packages it. See skills/_index.yml#excluded_surfaces.
+  key_fields: [id, name, slug, link, description, avatar_urls]
+relationships:
+- from: LeadershipProfile
+  to: Term
+  type: has_many
+  via: categories
+  detail: >-
+    Array of category term ids; resolve with GET /wp/v2/categories/{id}. Empty on 14 of 27
+    records — see the caution on Term.
+- from: LeadershipProfile
+  to: Term
+  type: has_many
+  via: tags
+  detail: Array of post_tag term ids. Always empty on this deployment.
+- from: LeadershipProfile
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  detail: >-
+    Integer attachment id — the headshot. The Better REST API Featured Images plugin also
+    inlines `better_featured_image` on each record, so the second request is usually
+    unnecessary.
+- from: Page
+  to: Page
+  type: belongs_to
+  via: parent
+  detail: Self-referential hierarchy. 0 for every page on this deployment — the page tree is flat.
+- from: Page
+  to: MediaItem
+  type: has_one
+  via: featured_media
+- from: Page
+  to: MediaItem
+  type: has_many
+  via: acf.modules[].{image fields}
+  detail: >-
+    ACF resolves image fields to full attachment objects inline (ID, url, width, height,
+    filesize, mime_type, uploaded_to), so page imagery needs no follow-up request.
+- from: Page
+  to: User
+  type: belongs_to
+  via: author
+- from: Post
+  to: User
+  type: belongs_to
+  via: author
+- from: MediaItem
+  to: Page
+  type: belongs_to
+  via: post
+  detail: >-
+    The post or page the attachment was uploaded to; null for library-only uploads — null on the
+    sampled AACR poster, which is how the scientific PDFs are stored.
+- from: Term
+  to: Term
+  type: belongs_to
+  via: parent
+  detail: Hierarchical for the category taxonomy; 0 for every category on this deployment.
+- from: SearchResult
+  to: LeadershipProfile
+  type: has_one
+  via: id + subtype
+  detail: >-
+    Resolve by fetching /wp/v2/{subtype-rest-base}/{id}; _links.self carries the resolved href
+    directly.
+- from: PostType
+  to: Taxonomy
+  type: has_many
+  via: taxonomies
+- from: Taxonomy
+  to: PostType
+  type: has_many
+  via: types
+traversal_shortcuts:
+  _embed: >-
+    Appending _embed to a collection or object request inlines author, featured media and terms
+    under _embedded, collapsing the has_one/has_many hops above into a single request.
+  _fields: >-
+    Appending _fields=id,slug,title,link,acf trims the payload substantially — the default
+    representation of every object carries a large yoast_head HTML blob plus yoast_head_json.
+subway: null

@@ -1,0 +1,110 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/boundless-bio-content-openapi.yml, live headers, well-known/boundless-bio-well-known.yml
+  and security/boundless-bio-domain-security.yml
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    openapi/boundless-bio-content-openapi.yml — DERIVED by API Evangelist from the provider's
+    live route-discovery document, not published by Boundless Bio.
+  provider_published: false
+- id: json-schema
+  conforms: true
+  evidence: WordPress REST route args are JSON Schema fragments (type/enum/default/minimum/maximum)
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: securitySchemes.applicationPassword — http/basic (WordPress Application Passwords)
+- id: rfc8288-web-linking
+  conforms: true
+  evidence: >-
+    'Link: <https://boundlessbio.com/wp-json/wp/v2/who-we-are?per_page=1&page=2>; rel="next"'
+    observed on GET /wp/v2/who-we-are; resources carry _links relations
+- id: cors
+  conforms: true
+  evidence: >-
+    Access-Control-Allow-Headers and Access-Control-Expose-Headers present on wp-json responses;
+    X-WP-Total, X-WP-TotalPages and Link are exposed to browser clients
+- id: oembed
+  conforms: true
+  evidence: oembed/1.0 namespace registered with /embed and /proxy routes
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use the WordPress {code,message,data.status} envelope, not application/problem+json
+- id: llms-txt
+  conforms: false
+  evidence: >-
+    https://boundlessbio.com/llms.txt and https://www.boundlessbio.com/llms.txt both 404. The
+    file at llms/boundless-bio-llms.txt is an API Evangelist generation, not a provider
+    publication.
+  provider_published: false
+- id: model-context-protocol
+  conforms: false
+  evidence: >-
+    No MCP namespace on this deployment — GET /wp-json/mcp returns 404 rest_no_route, and the
+    wp-abilities/v1 registry that backs the WordPress MCP adapter returns 401. No MCP server is
+    claimed and no MCPServer pointer is wired.
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; /.well-known/oauth-authorization-server 404
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration 404
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on boundlessbio.com and www.boundlessbio.com
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both 404 on boundlessbio.com and
+    www.boundlessbio.com
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface published
+- id: graphql
+  conforms: false
+  evidence: >-
+    no /graphql route in any of the 10 registered WordPress REST namespaces; https://boundlessbio.com/graphql
+    returns 404
+- id: grpc
+  conforms: false
+  evidence: no published .proto and no gRPC endpoint
+- id: dnssec
+  conforms: false
+  evidence: security/boundless-bio-domain-security.yml — no DNSKEY on boundlessbio.com
+- id: spf
+  conforms: true
+  evidence: SPF record present on boundlessbio.com
+- id: dmarc
+  conforms: partial
+  evidence: DMARC record present with policy p=quarantine (not reject)
+- id: caa
+  conforms: false
+  evidence: no CAA record on boundlessbio.com
+- id: hsts
+  conforms: false
+  evidence: no Strict-Transport-Security header on boundlessbio.com
+- id: tls-1.3
+  conforms: true
+  evidence: TLSv1.3 negotiated on boundlessbio.com
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    No trust center and no SOC 2 / ISO 27001 / HIPAA / GDPR compliance page found on
+    boundlessbio.com (/security/, /trust/, /compliance/, /responsible-disclosure/ all 404;
+    trust.boundlessbio.com is NXDOMAIN). probe-security-programs.py returned vdp=none
+    trust=none. Boundless Bio is a Nasdaq-listed clinical-stage oncology company running
+    FDA-regulated trials, so it is certainly subject to GCP, HIPAA and SOX obligations — but it
+    publishes nothing machine-readable about them, and this pipeline records only what is
+    published. No Compliance, TrustCenter or Security pointer wired.
+regulatory_context:
+  note: >-
+    Informational only, derived from the company's own materials — not an API conformance claim.
+    Boundless Bio runs FDA-cleared INDs and the Phase 1 KOMODO-1 trial of BBI-940, which sit
+    under 21 CFR / ICH-GCP, and as a Nasdaq registrant (BOLD) it reports under SEC rules. None of
+    that regulatory posture is expressed in any machine-readable artifact on boundlessbio.com.

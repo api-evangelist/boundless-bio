@@ -1,0 +1,229 @@
+generated: '2026-08-08'
+method: probed
+source: live GET requests against https://boundlessbio.com/wp-json/wp/v2 on 2026-08-08
+api: boundless-bio:content
+spec: openapi/boundless-bio-content-openapi.yml
+note: >-
+  Real response payloads captured verbatim from the live boundlessbio.com WordPress REST API.
+  Boundless Bio publishes no examples of its own and the derived OpenAPI carries none, so these
+  were PROBED, not authored. Every value below came back from an anonymous GET; nothing is
+  synthetic and no field was edited except the trimming noted on each entry. All requests are
+  anonymous and read-only.
+conventions:
+  anonymous_read: true
+  trimming_param: >-
+    _fields — a comma-separated list of top-level fields, used on most captures below to keep
+    them readable
+  expansion_param: _embed — inlines author, wp:featuredmedia and wp:term into _embedded
+  pagination_headers: [X-WP-Total, X-WP-TotalPages]
+examples:
+- operationId: getWhoWeAre
+  request: GET /wp/v2/who-we-are?per_page=2&_fields=id,slug,link,title,categories,featured_media,type,status
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '27'
+    X-WP-TotalPages: '27'
+    Link: <https://boundlessbio.com/wp-json/wp/v2/who-we-are?per_page=1&page=2>; rel="next"
+  truncation: per_page=2 and _fields applied on the request; the body below is the complete response
+  response:
+  - id: 2082
+    slug: dr-robert-doebele-m-d-ph-d
+    status: publish
+    type: who-we-are
+    link: https://boundlessbio.com/who-we-are/dr-robert-doebele-m-d-ph-d/
+    title:
+      rendered: Dr. Robert Doebele, M.D., Ph.D.
+    featured_media: 2081
+    categories: []
+  - id: 2164
+    slug: preetanshu-preet-pandey-ph-d
+    status: publish
+    type: who-we-are
+    link: https://boundlessbio.com/who-we-are/preetanshu-preet-pandey-ph-d/
+    title:
+      rendered: Preetanshu (Preet) Pandey, Ph.D.
+    featured_media: 2162
+    categories: []
+  note: >-
+    Both records return `categories: []` — 14 of the 27 Leadership records are uncategorized, so
+    the taxonomy cannot be used as a reliable role filter. See the getCategories example below.
+- operationId: getWhoWeAreById
+  request: GET /wp/v2/who-we-are/2082?_fields=id,slug,title,excerpt,categories,featured_media,acf,link
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: >-
+    _fields applied; excerpt.rendered HTML-stripped and cut at 260 characters for readability
+    (the live field is longer). content.rendered omitted from this capture — it is present and
+    1,304 characters on this record.
+  response:
+    id: 2082
+    slug: dr-robert-doebele-m-d-ph-d
+    link: https://boundlessbio.com/who-we-are/dr-robert-doebele-m-d-ph-d/
+    title:
+      rendered: Dr. Robert Doebele, M.D., Ph.D.
+    excerpt:
+      rendered: >-
+        Dr. Doebele is a physician-scientist and medical oncologist experienced in bringing
+        biology-based and tumor-agnostic treatment approaches to patients. Prior to joining
+        Boundless Bio, Dr. Doebele served as Chief Medical Officer and Chief Scientific Officer
+        at R ...
+      protected: false
+    featured_media: 2081
+    categories: []
+    acf:
+      title: "<p>Chief Medical Officer</p>\n"
+      under_bio_text: ''
+      linkedin:
+        title: ''
+        url: https://www.linkedin.com/in/robert-doebele/
+        target: _blank
+      twitter: ''
+  note: >-
+    This is the shape that makes the surface useful: the job title is in `acf.title` (wrapped in
+    a <p> tag, so strip it), and a LinkedIn URL is populated on all 27 records. These are
+    published executive-bio pages, the same content the /who-we-are/ page renders to any visitor.
+- operationId: getCategories
+  request: GET /wp/v2/categories?per_page=20&_fields=id,name,slug,count
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: _fields applied; all 4 terms returned
+  response:
+  - {id: 2, count: 4, name: Board of Directors, slug: board-of-directors}
+  - {id: 7, count: 4, name: Leadership, slug: leadership}
+  - {id: 4, count: 5, name: Scientific / Clinical Advisors, slug: scientific-founders}
+  - {id: 1, count: 0, name: Uncategorized, slug: uncategorized}
+  note: >-
+    The advisors term's slug (`scientific-founders`) does not match its display name
+    (`Scientific / Clinical Advisors`) — filter on the id or the slug, never on the name. The
+    three populated terms total 13, against 27 Leadership records.
+- operationId: getPages
+  request: GET /wp/v2/pages?per_page=1&_fields=id,slug,link,title,type,status,parent
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '9'
+  truncation: per_page=1 and _fields applied; body below is complete
+  response:
+  - id: 18
+    slug: publications
+    status: publish
+    type: page
+    link: https://boundlessbio.com/publications/
+    title:
+      rendered: Publications
+    parent: 0
+- operationId: getPagesById
+  request: GET /wp/v2/pages/255
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: >-
+    Structure only. The full body is ~50KB; the `acf.modules` array is summarized to its layout
+    keys rather than reproduced, and yoast_head / _links are omitted.
+  response:
+    id: 255
+    slug: contact
+    title:
+      rendered: Contact Us
+    content:
+      rendered: ''
+    excerpt:
+      rendered: ''
+    meta:
+      footnotes: ''
+    acf:
+      modules:
+      - acf_fc_layout: hero
+        note: 'carries hero_static_bg_image (a resolved attachment object), hero_static_tagline, hero_static_headline, hero_static_text, hero_static_cta'
+      - acf_fc_layout: what_is_ecdna
+        note: 'carries what_is_ecdna_bg, what_is_ecdna_items, what_is_ecdna_image'
+      - acf_fc_layout: location
+        note: 'carries location_image, location_press, location_address'
+      - acf_fc_layout: page_callout
+        note: 'carries page_callout_bg_image, page_callout_headline, page_callout_cta'
+  note: >-
+    THE KEY OBSERVATION ON THIS SURFACE. `content.rendered` and `excerpt.rendered` are empty
+    strings on every page; the entire page body is served through the public `acf.modules`
+    flexible-content array. Reading `content` alone returns nothing.
+- operationId: getMedia
+  request: GET /wp/v2/media?per_page=1&_fields=id,slug,source_url,mime_type,media_type,media_details,post,alt_text
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '255'
+  truncation: media_details reduced to its size keys; body otherwise complete
+  response:
+  - id: 2213
+    slug: aacr2026_bbiposter_final
+    alt_text: ''
+    media_type: file
+    mime_type: application/pdf
+    post: null
+    source_url: https://boundlessbio.com/wp-content/uploads/2026/04/AACR2026_BBIPoster_Final.pdf
+    media_details:
+      sizes: [full, medium, large, thumbnail]
+  note: >-
+    The most recent media item is a scientific conference poster (AACR 2026), not imagery — the
+    media library is where Boundless Bio's primary scientific material actually lives. `post` is
+    null, so the PDF is a library-only upload with no parent page to traverse back to.
+- operationId: getSearch
+  request: GET /wp/v2/search?search=leadership&per_page=3&type=post&subtype=any
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: first result only; _links.about and _links.collection trimmed
+  response:
+  - id: 1801
+    title: "James “Jamie” Christensen, Ph.D."
+    url: https://boundlessbio.com/who-we-are/james-jamie-christensen-ph-d/
+    type: post
+    subtype: who-we-are
+    _links:
+      self:
+      - embeddable: true
+        href: https://boundlessbio.com/wp-json/wp/v2/who-we-are/1801
+        targetHints:
+          allow: [GET]
+  note: >-
+    `type` is the generic search bucket (`post`) and `subtype` is the real content type
+    (`who-we-are`) — resolve via subtype, and note that _links.self.href already gives the
+    resolved URL so no /wp/v2/types lookup is needed. `targetHints.allow: [GET]` confirms
+    read-only access for anonymous callers.
+- operationId: getPosts
+  request: GET /wp/v2/posts?per_page=1&_fields=id
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '0'
+  response: []
+  note: >-
+    Included as the collection-size observation: the blog is registered but empty. The RSS feed
+    at /feed/ is a well-formed channel with zero <item> elements, confirming the same.
+gated_surfaces:
+- operationId: getSettings
+  request: GET /wp-json/wp/v2/settings
+  status: 401
+  response: {code: rest_forbidden, message: Sorry, you are not allowed to do that., data: {status: 401}}
+  note: Captured verbatim; this is the error-envelope example in errors/boundless-bio-problem-types.yml.
+- operationId: null
+  request: GET /wp-json/wp-abilities/v1/abilities
+  status: 401
+  response: {code: rest_forbidden, message: Sorry, you are not allowed to do that., data: {status: 401}}
+  note: >-
+    The WordPress Abilities API is registered on this deployment and entirely gated. There is no
+    companion MCP adapter — GET /wp-json/mcp returns 404 rest_no_route.
+- operationId: null
+  request: GET /wp-json/wp/v2/global/search?search=ecDNA
+  status: 500
+  response: {code: front_end_ajax_search, message: No results, data: null}
+  note: >-
+    A theme AJAX route in the separate wp/v2/global namespace that returns HTTP 500 for an empty
+    result set, with a third envelope shape. Excluded from the derived OpenAPI; recorded in
+    errors/boundless-bio-problem-types.yml.
+excluded_from_examples:
+- operationId: getUsers
+  reason: >-
+    /wp/v2/users is readable anonymously on this deployment (HTTP 200, 4 records) and returns
+    the display names and author-archive slugs of internal WordPress staff accounts. The
+    exposure is documented structurally in data-model/boundless-bio-data-model.yml, but no live
+    payload was captured here and no individual is named — a live response about identifiable
+    staff must not become a published example.

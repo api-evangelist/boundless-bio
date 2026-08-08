@@ -1,0 +1,42 @@
+generated: '2026-08-08'
+method: searched
+source: >-
+  Public package-registry searches plus a GitHub organization search, 2026-08-08. Also checked
+  the whole boundlessbio.com surface for an SDK, client-library or download page.
+note: >-
+  Boundless Bio ships no client library, no SDK and no CLI — it publishes no product API to
+  wrap, and it runs no developer program. There is also no GitHub organization: github.com/
+  boundlessbio, github.com/boundless-bio and github.com/BoundlessBio all return 404, so unlike
+  many clinical-stage biotechs Boundless Bio publishes no first-party research code either. Its
+  scientific output is distributed as journal papers and conference posters (linked from
+  https://boundlessbio.com/publications/ and served as PDFs out of the WordPress media library),
+  not as software. Absence is the finding here; nothing was authored to fill the gap, and NO
+  SDKs pointer is wired in apis.yml because there is no SDK to point at.
+sdk_count: 0
+api_clients: 0
+packages: []
+github_organization:
+  exists: false
+  probed:
+  - {url: 'https://api.github.com/orgs/boundlessbio', status: 404}
+  - {url: 'https://api.github.com/orgs/boundless-bio', status: 404}
+  - {url: 'https://api.github.com/orgs/BoundlessBio', status: 404}
+  note: No GitHubOrganization pointer wired — the organization does not exist.
+registries_probed:
+- {registry: npm, query: boundlessbio / boundless-bio, result: no first-party package}
+- {registry: pypi, query: boundlessbio, result: 404}
+- {registry: pypi, query: boundless-bio, result: 404}
+- {registry: rubygems, query: boundlessbio, result: 404}
+- {registry: crates.io, query: boundlessbio, result: no crate}
+- {registry: packagist, query: boundlessbio, result: no package}
+- {registry: nuget, query: boundlessbio, result: 0 hits}
+- {registry: maven-central, query: boundlessbio, result: no artifact}
+- {registry: pkg.go.dev, query: boundlessbio, result: no module}
+adjacent_software:
+  note: >-
+    Boundless Bio does describe proprietary software in its own materials — ECHO, an algorithm
+    that detects ecDNA from routine clinical next-generation sequencing data, which the company
+    calls the first ecDNA diagnostic used in clinical trials, and the Spyglass discovery
+    platform. Neither is distributed, downloadable, licensable through any public channel, or
+    reachable over an API. They are recorded here as context only, and are deliberately NOT
+    listed as packages.

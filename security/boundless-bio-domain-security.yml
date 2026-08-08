@@ -1,0 +1,16 @@
+generated: '2026-08-08'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: boundlessbio.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 13 01:31:53 2026 GMT
+  hsts: false
+domains:
+- domain: boundlessbio.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

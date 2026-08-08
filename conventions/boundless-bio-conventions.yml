@@ -1,0 +1,144 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  openapi/boundless-bio-content-openapi.yml (derived from https://boundlessbio.com/wp-json/)
+  plus live response headers observed on GET /wp-json/wp/v2/who-we-are?per_page=1, 2026-08-08
+api: boundless-bio:content
+authentication:
+  anonymous_read: true
+  scheme: WordPress Application Passwords over HTTP Basic
+  authorization_endpoint: https://boundlessbio.com/wp-admin/authorize-application.php
+  browser_scheme: logged-in cookie + X-WP-Nonce header
+  artifact: authentication/boundless-bio-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key header or parameter is exposed on any of the 219 routes in the discovery
+    document, and none is documented. No Idempotency pointer is wired in apis.yml — Boundless
+    Bio has no idempotency contract to advertise, and asserting one would be fabrication. It is
+    also moot for anonymous consumers: every write route on this surface requires an
+    authenticated WordPress user.
+pagination:
+  style: page-number
+  request_params:
+  - {name: page, type: integer, default: 1, minimum: 1}
+  - {name: per_page, type: integer, default: 10, minimum: 1, maximum: 100}
+  - {name: offset, type: integer, note: available on collection routes}
+  response_headers:
+  - {name: X-WP-Total, meaning: total items in the collection}
+  - {name: X-WP-TotalPages, meaning: total pages at the current per_page}
+  link_header: 'RFC 8288 Link header with rel="next" / rel="prev"'
+  observed: >-
+    GET /wp/v2/who-we-are?per_page=1 -> X-WP-Total: 27, X-WP-TotalPages: 27,
+    Link: <https://boundlessbio.com/wp-json/wp/v2/who-we-are?per_page=1&page=2>; rel="next"
+  cors_note: >-
+    X-WP-Total, X-WP-TotalPages and Link are all named in Access-Control-Expose-Headers, so a
+    browser client can read them cross-origin.
+field_selection:
+  sparse_fields:
+    param: _fields
+    note: >-
+      Comma-separated list of top-level fields to return. Materially useful on this deployment —
+      the default representation of every object inlines a large `yoast_head` HTML blob and a
+      `yoast_head_json` object from the Yoast SEO plugin.
+  expansion:
+    param: _embed
+    note: >-
+      Inlines linked resources (author, wp:featuredmedia, wp:term, replies) into _embedded,
+      driven by the _links relations each resource carries.
+  context:
+    param: context
+    values: [view, embed, edit]
+    default: view
+    note: edit context requires authentication
+content_representation:
+  finding: >-
+    THE MOST IMPORTANT CONVENTION ON THIS DEPLOYMENT. For the `page` type, `content.rendered`
+    and `excerpt.rendered` are EMPTY STRINGS — verified on GET /wp/v2/pages/255 (Contact Us) and
+    GET /wp/v2/pages/305 (Homepage). The page copy is not missing: the site is built with
+    Advanced Custom Fields flexible content, and the whole page body is served in the public
+    `acf.modules` array, one entry per layout block (`acf_fc_layout`: hero, ...), with images
+    resolved to full attachment objects including url, dimensions, filesize and mime type.
+  consequence: >-
+    An agent that reads `content.rendered` for a page will conclude the site is empty. Page text
+    must be read from `acf.modules`. This is a deployment convention, not part of the upstream
+    wp/v2 contract, and it will change if the theme changes.
+  exception: >-
+    The `who-we-are` (Leadership) type behaves normally — `content.rendered` carries the full
+    biography (1,304 characters on the sampled record) and `excerpt.rendered` a summary. Its
+    `acf` object adds the job title (`title`, HTML-wrapped), `under_bio_text`, and `linkedin` /
+    `twitter` link objects.
+ordering_and_filtering:
+  params: [search, order, orderby, slug, status, after, before, modified_after, modified_before,
+    include, exclude, categories, categories_exclude, tags, tags_exclude, author, parent,
+    menu_order, offset, search_columns, search_semantics]
+  note: taken verbatim from the route args in the discovery document
+metadata:
+  field: meta
+  note: >-
+    Registered post meta; `{"footnotes": ""}` on the sampled page. The substantive structured
+    data on this deployment is in `acf`, not `meta` — see content_representation above. Objects
+    also carry `class_list`, `better_featured_image` (Better REST API Featured Images plugin)
+    and `yoast_head` / `yoast_head_json`.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header is emitted. Cloudflare returns cf-ray, which is an edge
+    trace identifier, not an application request id.
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  namespaces_present:
+  - oembed/1.0
+  - wpe/cache-plugin/v1
+  - wpe_sign_on_plugin/v1
+  - yoast/v1
+  - wp/v2/global
+  - wp/v2
+  - wp-site-health/v1
+  - wp-block-editor/v1
+  - wp-abilities/v1
+  - acf/v3
+  note: >-
+    Version is carried by the WordPress REST namespace segment. Boundless Bio does not version
+    an API of its own — the namespace version tracks WordPress core (generator reports
+    WordPress 7.0).
+  artifact: lifecycle/boundless-bio-lifecycle.yml
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  shape: '{"code": "<string>", "message": "<human string>", "data": {"status": <int>}}'
+  observed: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  artifact: errors/boundless-bio-problem-types.yml
+rate_limiting:
+  documented: false
+  headers_observed: []
+  note: >-
+    No X-RateLimit-* or Retry-After headers observed on any anonymous GET. The site sits behind
+    Cloudflare in front of WP Engine, so edge rate limiting may exist but is not advertised.
+    robots.txt sets `Crawl-delay: 10` site-wide, which is the only pacing signal the provider
+    publishes; honour it.
+caching:
+  headers_observed:
+  - 'cache-control: max-age=600, must-revalidate'
+  - 'x-cacheable: SHORT'
+  - 'x-cache: MISS / HIT (WP Engine)'
+  - 'x-cache-group: normal'
+  - 'cf-cache-status: HIT'
+  - last-modified
+  - 'age (204s observed on a HIT)'
+  note: 10-minute edge TTL on wp-json collection responses; Cloudflare serves them from cache.
+robots:
+  api_indexing: 'x-robots-tag: noindex on wp-json responses'
+security_headers_observed:
+- 'x-content-type-options: nosniff'
+- 'content-security-policy: upgrade-insecure-requests'
+- 'strict-transport-security: ABSENT — see security/boundless-bio-domain-security.yml'
+cors:
+  access_control_allow_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+  access_control_expose_headers: [X-WP-Total, X-WP-TotalPages, Link]
+  allow: GET
+  note: >-
+    The `Allow: GET` response header on the collection routes reflects what an ANONYMOUS caller
+    may do. The write methods exist in the route descriptor (and therefore in the derived
+    OpenAPI) but are not offered to unauthenticated callers.

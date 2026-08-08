@@ -1,0 +1,95 @@
+generated: '2026-08-08'
+method: derived
+source: >-
+  Live responses observed on boundlessbio.com/wp-json 2026-08-08, plus the WordPress REST error
+  contract reflected in openapi/boundless-bio-content-openapi.yml
+format: wordpress-rest
+rfc9457: false
+envelope:
+  fields:
+  - {name: code, type: string, meaning: machine-readable error slug}
+  - {name: message, type: string, meaning: human-readable message}
+  - {name: data.status, type: integer, meaning: HTTP status code, mirrored in the response status}
+  content_type: application/json
+  note: >-
+    Not application/problem+json — the WordPress REST API predates RFC 9457 and uses its own
+    envelope. Recorded as-is; nothing normalised or invented.
+problems:
+- status: 401
+  code: rest_forbidden
+  title: Sorry, you are not allowed to do that.
+  meaning: The request requires authentication (or higher capabilities) than the caller has.
+  observed_on:
+  - GET /wp-json/wp/v2/settings
+  - GET /wp-json/wp-abilities/v1/abilities
+  observed_body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  remediation: >-
+    Authenticate with a WordPress Application Password (HTTP Basic) issued from
+    https://boundlessbio.com/wp-admin/authorize-application.php, or a logged-in cookie plus
+    X-WP-Nonce. Anonymous callers cannot reach these routes at all.
+- status: 404
+  code: rest_no_route
+  title: No route was found matching the URL and request method.
+  meaning: The requested path is not a registered REST route in any of the 10 namespaces.
+  observed_on:
+  - GET /wp-json/mcp
+  observed_note: >-
+    Probed while checking whether this deployment registers a WordPress MCP adapter, as some
+    WordPress sites in this catalog do. It does not — hence 404, and hence no mcp/ artifact and
+    no MCPServer pointer in apis.yml.
+  remediation: Enumerate valid routes from https://boundlessbio.com/wp-json/ before calling.
+- status: 404
+  code: rest_post_invalid_id
+  title: Invalid post ID.
+  meaning: A single-resource route was called with an id that does not exist or is not visible.
+  source_operation: openapi/boundless-bio-content-openapi.yml#getWhoWeAreById
+- status: 404
+  code: rest_term_invalid
+  title: Term does not exist.
+  meaning: >-
+    A taxonomy single-resource route (categories, tags) was called with an unknown term id.
+  source_operation: openapi/boundless-bio-content-openapi.yml#getCategoriesById
+- status: 400
+  code: rest_invalid_param
+  title: Invalid parameter(s).
+  meaning: >-
+    One or more query/body parameters failed the schema declared in the route args
+    (enum, minimum/maximum, or type). data.params names the offending parameters.
+  source_operation: openapi/boundless-bio-content-openapi.yml#getWhoWeAre
+  remediation: >-
+    per_page is capped at 100 and page is minimum 1; orderby, order, status and context are
+    enum-constrained. The constraints are carried on each operation in the derived OpenAPI.
+- status: 400
+  code: rest_post_invalid_page_number
+  title: The page number requested is larger than the number of pages available.
+  meaning: >-
+    page was set beyond X-WP-TotalPages for the current per_page. Relevant here because the
+    default per_page of 10 makes this easy to hit on the 27-record Leadership collection.
+- status: 403
+  code: rest_cookie_invalid_nonce
+  title: Cookie check failed.
+  meaning: A cookie-authenticated write was attempted without a valid X-WP-Nonce.
+- status: 401
+  code: rest_cannot_view
+  title: Sorry, you are not allowed to view this resource.
+  meaning: >-
+    Applies to the edit context and to draft/private resources; anonymous callers may only read
+    published records in view or embed context.
+non_wordpress_error_observed:
+- status: 500
+  code: front_end_ajax_search
+  message: No results
+  data: null
+  observed_on: GET /wp-json/wp/v2/global/search?search=ecDNA
+  note: >-
+    A theme-supplied AJAX search route in the separate `wp/v2/global` namespace. It answers an
+    empty result set with HTTP 500 and a THIRD envelope shape — `data` is null rather than an
+    object carrying `status`, so it matches neither the WordPress envelope above nor RFC 9457.
+    Captured verbatim because it is a genuine divergence a consumer will hit. This route is
+    deliberately excluded from the derived OpenAPI, which models the `wp/v2` namespace only.
+note: >-
+  Boundless Bio publishes no error reference — it publishes no developer documentation at all.
+  The codes above are the WordPress REST contract as observed live on boundlessbio.com; the 401
+  rest_forbidden and the 500 front_end_ajax_search entries were captured verbatim from probes on
+  2026-08-08. Nothing was copied from generic WordPress documentation without an observation or a
+  route-level schema constraint behind it.

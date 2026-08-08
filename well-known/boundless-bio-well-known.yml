@@ -1,0 +1,117 @@
+generated: '2026-08-08'
+method: probed
+source: live GET probes of the /.well-known/ surface on every boundlessbio.com host, 2026-08-08
+host: https://boundlessbio.com
+note: >-
+  Boundless Bio serves no /.well-known/ discovery document at all. Every RFC 8615 path below
+  returned the WordPress 404 page (text/html), on both boundlessbio.com and its www alias,
+  including the two agent-card paths. Recorded as observed — absence is valid data, and nothing
+  was authored on Boundless Bio's behalf. There is no separate API or docs host: api, docs,
+  developer, developers, trust and status subdomains are all NXDOMAIN, so boundlessbio.com (and
+  its www alias) is the only host with a discovery surface to probe. The investor site is a
+  third-party host (see hosts_probed).
+hosts_probed:
+- host: boundlessbio.com
+  resolves: true
+- host: www.boundlessbio.com
+  resolves: true
+  note: serves the same WordPress site as the apex
+- host: api.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN — no API host
+- host: docs.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN — no docs host
+- host: developer.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN
+- host: developers.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN
+- host: trust.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN — no trust center host
+- host: status.boundlessbio.com
+  resolves: false
+  note: NXDOMAIN — no status page host
+- host: investors.boundlessbio.com
+  resolves: true
+  note: >-
+    CNAME to boundlessbio.gcs-web.com behind Akamai — a third-party investor-relations platform
+    (Q4/gcs-web), not infrastructure Boundless Bio operates. Not probed for /.well-known/
+    documents because any result would describe the vendor, not this provider. It also refused
+    an anonymous connection from this run (see lifecycle/boundless-bio-lifecycle.yml).
+documents:
+- path: /.well-known/security.txt
+  spec: RFC 9116
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/openid-configuration
+  spec: OpenID Connect Discovery 1.0
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/oauth-authorization-server
+  spec: RFC 8414
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/oauth-protected-resource
+  spec: RFC 9728
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/api-catalog
+  spec: RFC 9727
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/ai-plugin.json
+  spec: OpenAI plugin manifest
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/agent-card.json
+  spec: A2A 1.0.0
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+  note: >-
+    No agent card. Nothing was written to a2a/ — an agent card asserts that the provider serves
+    the document from its own host, so it is the one artifact in this pipeline that is never
+    generated or derived.
+- path: /.well-known/agent.json
+  spec: A2A pre-0.3 legacy
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+- path: /.well-known/dnt-policy.txt
+  spec: EFF Do Not Track policy
+  status: 404
+adjacent_discovery_found:
+- path: /wp-json/
+  status: 200
+  content_type: application/json
+  note: >-
+    The WordPress REST route-discovery document — 219 routes across 10 namespaces. This is the
+    only machine-readable contract on boundlessbio.com and is the source the OpenAPI in openapi/
+    was derived from. Saved verbatim at openapi/_source/boundless-bio-wp-json-root.json.
+- path: /robots.txt
+  status: 200
+  note: >-
+    Yoast-generated. `User-agent: *` with an empty `Disallow:` — nothing is disallowed, so every
+    crawler including every AI crawler is permitted by default. A site-wide `Crawl-delay: 10` is
+    set above the Yoast block. No AI crawler is named, allowed or blocked individually.
+- path: /sitemap.xml
+  status: 200
+  note: >-
+    Yoast sitemap index with three children — page-sitemap.xml, who-we-are-sitemap.xml and
+    category-sitemap.xml. It confirms the same two content types the REST API exposes.
+- path: /feed/
+  status: 200
+  content_type: application/rss+xml
+  note: >-
+    A valid RSS 2.0 channel that contains ZERO items — the `post` type has 0 published records.
+    Not wired as Blog or BlogRSS, because there is nothing to syndicate.
+absent_but_checked:
+- path: /llms.txt
+  status: 404
+  also_probed_on: www.boundlessbio.com (404)
+  note: >-
+    Boundless Bio publishes no llms.txt. The file at llms/boundless-bio-llms.txt is an API
+    Evangelist GENERATION, not a provider publication, and is marked as such in its own header.
+- path: /llms-full.txt
+  status: 404

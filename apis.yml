@@ -1,23 +1,131 @@
 aid: boundless-bio
 name: Boundless Bio
-description: 'Boundless Bio is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Boundless Bio (Nasdaq: BOLD) is a San Diego, California based clinical-stage,
+  next-generation precision oncology company founded in 2018 to target extrachromosomal DNA
+  (ecDNA) — circular, centromere-free DNA that carries high copy-number oncogene amplifications
+  and is observed in roughly 17% of cancer patients, driving tumor heterogeneity and resistance
+  to targeted therapy. Its proprietary Spyglass discovery platform, built on a suite of ecDNA+/-
+  tumor models plus molecular analytics and imaging, identifies targets essential to ecDNA
+  function, which the company drugs with small-molecule ecDNA-directed therapies (ecDTx). The
+  clinical pipeline is led by BBI-940, a kinesin inhibitor targeting ecDNA segregation, in the
+  Phase 1 KOMODO-1 trial in ER+/HER2- and TNBC-LAR breast cancer opened in February 2026, with
+  earlier CHK1 (replication stress) and RNR (DNA assembly and repair) programs behind it; ECHO,
+  its ecDNA diagnostic algorithm, reads ecDNA off routine clinical next-generation sequencing
+  and is described by the company as the first ecDNA diagnostic used in clinical trials.
+  Boundless Bio raised a $100M Series C co-led by Leaps by Bayer and RA Capital and listed on
+  Nasdaq in 2024. It publishes no developer program, no product API, no SDKs and no API
+  documentation of any kind; the only machine-readable surface on boundlessbio.com is the
+  WordPress REST API (wp/v2), anonymously readable, which serves the corporate pages, the
+  Leadership directory and the media library as JSON.'
 url: https://raw.githubusercontent.com/api-evangelist/boundless-bio/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
+image: https://boundlessbio.com/wp-content/uploads/2019/09/logo-boundless-bio.png
 specificationVersion: '0.20'
 created: '2026-08-08'
 modified: '2026-08-08'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Oncology
+- Precision Medicine
+- Drug Discovery
+- Life Sciences
+- Pharmaceuticals
+- Clinical Trials
+- Genomics
+- Diagnostics
+- Research
+- Content
+apis:
+- aid: boundless-bio:content
+  name: Boundless Bio Content API (WordPress REST wp/v2)
+  description: 'The anonymously readable WordPress REST API that boundlessbio.com serves at
+    /wp-json/wp/v2 — the corporate pages (9 published), the `who-we-are` Leadership custom post
+    type (27 published, categorized as Board of Directors, Leadership and Scientific / Clinical
+    Advisors), the media library (255 items), taxonomies and a site-wide search endpoint, all as
+    JSON with page/per_page pagination and X-WP-Total / X-WP-TotalPages headers. Page bodies are
+    empty on the `content` field and are instead served in full through the public `acf` object
+    (Advanced Custom Fields flexible-content `modules`), so the page copy is machine-readable but
+    only under `acf`. This is the CMS content API, not a Boundless Bio product API; Boundless Bio
+    publishes no OpenAPI for it, so the definition in this repo was derived mechanically from the
+    live route-discovery document at https://boundlessbio.com/wp-json/.'
+  humanURL: https://boundlessbio.com/who-we-are/
+  baseURL: https://boundlessbio.com/wp-json/wp/v2
+  tags:
+  - Content
+  - Pages
+  - Leadership
+  - Search
+  - Media
+  - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/boundless-bio-content-openapi.yml
+  - type: Overlay
+    url: overlays/boundless-bio-content-overlay.yaml
+  - type: DataModel
+    url: data-model/boundless-bio-data-model.yml
+  - type: ErrorCatalog
+    url: errors/boundless-bio-problem-types.yml
+  - type: Examples
+    url: examples/boundless-bio-examples.yml
+x-enrichment:
+  date: '2026-08-08'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/boundless-bio-domain-security.yml
 - type: Website
+  url: https://boundlessbio.com/
+- type: About
+  url: https://boundlessbio.com/why-we-are-here/
+- type: Technology
+  url: https://boundlessbio.com/what-we-do/
+- type: Team
+  url: https://boundlessbio.com/who-we-are/
+- type: Publications
+  url: https://boundlessbio.com/publications/
+- type: Careers
+  url: https://boundlessbio.com/work-with-us/
+- type: Support
+  url: https://boundlessbio.com/contact/
+- type: Investors
+  url: https://investors.boundlessbio.com/
+- type: TermsOfService
+  url: https://boundlessbio.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://boundlessbio.com/privacy-policy/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/boundlessbio
+- type: Twitter
+  url: https://twitter.com/BoundlessBio
+- type: Packages
+  url: packages/boundless-bio-packages.yml
+- type: LLMsTxt
+  url: llms/boundless-bio-llms.txt
+- type: WellKnown
+  url: well-known/boundless-bio-well-known.yml
+- type: Authentication
+  url: authentication/boundless-bio-authentication.yml
+- type: Conventions
+  url: conventions/boundless-bio-conventions.yml
+- type: Conformance
+  url: conformance/boundless-bio-conformance.yml
+- type: Lifecycle
+  url: lifecycle/boundless-bio-lifecycle.yml
+- type: AgenticAccess
+  url: agentic-access/boundless-bio-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: SecondaryMarket
   url: https://forgeglobal.com/boundless-bio_stock/

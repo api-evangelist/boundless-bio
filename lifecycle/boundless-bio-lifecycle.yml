@@ -1,0 +1,86 @@
+generated: '2026-08-08'
+method: probed
+source: https://boundlessbio.com/wp-json/ + live probes 2026-08-08
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  docs: null
+  note: >-
+    Version is carried by the WordPress REST namespace segment. Boundless Bio does not version
+    an API of its own — the namespace version tracks WordPress core, which the feed generator
+    reports as WordPress 7.0.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and no operation in the derived OpenAPI is
+    marked deprecated. No Deprecation pointer wired.
+sla:
+  url: null
+  uptime_target: null
+  note: No SLA, uptime commitment or support tier is published.
+status_page:
+  url: null
+  probed:
+  - {url: 'https://status.boundlessbio.com/', result: NXDOMAIN}
+  - {url: 'https://boundlessbio.com/status/', result: 404}
+  note: >-
+    No status page exists. No StatusPage pointer wired.
+changelog:
+  url: null
+  probed:
+  - {url: 'https://boundlessbio.com/feed/', result: '200 — a valid RSS 2.0 channel containing ZERO items'}
+  - {url: 'https://boundlessbio.com/wp-json/wp/v2/posts?per_page=1', result: '200, X-WP-Total: 0'}
+  - {url: 'https://boundlessbio.com/whats-new/', result: '404 — a BROKEN LINK in the site footer'}
+  note: >-
+    Boundless Bio publishes no changelog or release notes for any API, and no blog on this host
+    at all: the `post` type has 0 published records and the RSS feed is empty, so no Blog or
+    BlogRSS pointer was wired either. Corporate news is published on the separate investor site
+    (see investor_relations below), which this profile does not mirror. Worth reporting to the
+    provider: the "What's New" link in the boundlessbio.com footer points at
+    https://boundlessbio.com/whats-new/, which 404s.
+support:
+  contact_page: https://boundlessbio.com/contact/
+  developer_support: null
+  note: >-
+    A general corporate contact page only. There is no developer support channel, forum,
+    community, Slack/Discord or issue tracker for any API.
+investor_relations:
+  url: https://investors.boundlessbio.com/
+  platform: third-party (CNAME to boundlessbio.gcs-web.com, fronted by Akamai)
+  probed:
+  - {url: 'https://investors.boundlessbio.com/', result: 'connection failed (curl exit 92 / HTTP 000) on repeated attempts with both bot and browser user agents'}
+  - {url: 'https://boundlessbio.gcs-web.com/', result: 'connection failed (HTTP 000)'}
+  note: >-
+    Boundless Bio (Nasdaq: BOLD) publishes news releases, SEC filings and events here, but the
+    host would not complete a connection for this run and it is vendor infrastructure rather
+    than a Boundless Bio surface. It is wired in apis.yml as `Investors` — a link property, not
+    an API — and nothing about its content is asserted in this profile.
+developer_surface_probes:
+  note: >-
+    Probed 2026-08-08 for any developer-facing surface. Boundless Bio publishes none: no
+    developer portal, no documentation site, no API reference, no quickstart, no pricing, no API
+    sign-up and no SDK. api.boundlessbio.com, docs.boundlessbio.com, developer.boundlessbio.com
+    and developers.boundlessbio.com are all NXDOMAIN. /docs, /api, /api-docs, /developers,
+    /openapi.json, /swagger.json and /graphql all return the WordPress 404. No pointer was wired
+    for any of these — the pages do not exist.
+  postman:
+    wired: false
+    finding: No public Postman workspace or collection attributable to Boundless Bio.
+  github:
+    wired: false
+    finding: >-
+      No GitHub organization — boundlessbio, boundless-bio and BoundlessBio all 404 on the
+      GitHub API. See packages/boundless-bio-packages.yml.
+hosting:
+  cdn: Cloudflare
+  origin: WP Engine
+  platform: >-
+    WordPress 7.0 with Yoast SEO, Advanced Custom Fields (acf/v3 namespace), the WP Engine cache
+    and sign-on plugins, and Better REST API Featured Images — all visible in the REST route
+    index and on live response payloads.
+  tls: TLSv1.3
+  cert_expires: 'Sep 13 01:31:53 2026 GMT'
+  hsts: false
+deprecated_operations: []
