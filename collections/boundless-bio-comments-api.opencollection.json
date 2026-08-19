@@ -1,0 +1,329 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boundless Bio Content API (WordPress REST wp/v2) Comments API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to comments published after a given ISO8601 compliant date."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to comments assigned to specific user IDs. Requires authorization."
+              },
+              {
+                "name": "author_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes comments assigned to specific user IDs. Requires authorization."
+              },
+              {
+                "name": "author_email",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to that from a specific author email. Requires authorization."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to comments published before a given ISO8601 compliant date."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by comment attribute."
+              },
+              {
+                "name": "parent",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to comments of specific parent IDs."
+              },
+              {
+                "name": "parent_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific parent IDs."
+              },
+              {
+                "name": "post",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to comments assigned to specific post IDs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to comments assigned a specific status. Requires authorization."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to comments assigned a specific type. Requires authorization."
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "The password for the post if it is password protected."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/comments"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/comments"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/comments/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the comment."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "The password for the parent post of the comment (if the post is password protected)."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/comments/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/comments/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/comments/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/comments/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/comments/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/comments/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/comments/{id}"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/comments/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/comments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the comment."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Whether to bypass Trash and force deletion."
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "The password for the parent post of the comment (if the post is password protected)."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DELETE /wp/v2/comments/{id}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

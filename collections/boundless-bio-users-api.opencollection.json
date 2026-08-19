@@ -1,0 +1,402 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boundless Bio Content API (WordPress REST wp/v2) Users API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by user attribute."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users with one or more specific slugs."
+              },
+              {
+                "name": "roles",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users matching at least one specific role provided. Accepts csv list or single role."
+              },
+              {
+                "name": "capabilities",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users matching at least one specific capability provided. Accepts csv list or single capability."
+              },
+              {
+                "name": "who",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users who are considered authors."
+              },
+              {
+                "name": "has_published_posts",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to users who have published posts."
+              },
+              {
+                "name": "search_columns",
+                "value": "",
+                "type": "query",
+                "description": "Array of column names to be searched."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/users"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/users"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/users/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/me",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/users/me"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/users/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/users/me"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/users/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/users/me"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/users/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/users/me"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/users/me",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/me",
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Required to be true, as users do not support trashing."
+              },
+              {
+                "name": "reassign",
+                "value": "",
+                "type": "query",
+                "description": "Reassign the deleted user's posts and links to this user ID."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DELETE /wp/v2/users/me"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/users/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the user."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/users/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/users/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/users/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/users/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/users/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/users/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/users/{id}"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/users/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the user."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Required to be true, as users do not support trashing."
+              },
+              {
+                "name": "reassign",
+                "value": "",
+                "type": "query",
+                "description": "Reassign the deleted user's posts and links to this user ID."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DELETE /wp/v2/users/{id}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

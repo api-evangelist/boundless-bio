@@ -1,0 +1,44 @@
+{
+  "provider": "boundless-bio",
+  "sources": [
+    "boundless-bio-comments-api-openapi.yml",
+    "boundless-bio-discovery-api-openapi.yml",
+    "boundless-bio-leadership-api-openapi.yml",
+    "boundless-bio-media-api-openapi.yml",
+    "boundless-bio-pages-api-openapi.yml",
+    "boundless-bio-posts-api-openapi.yml",
+    "boundless-bio-search-api-openapi.yml",
+    "boundless-bio-settings-api-openapi.yml",
+    "boundless-bio-taxonomy-api-openapi.yml",
+    "boundless-bio-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "boundless-bio-comments-api-openapi.yml",
+    "boundless-bio-discovery-api-openapi.yml",
+    "boundless-bio-leadership-api-openapi.yml",
+    "boundless-bio-media-api-openapi.yml",
+    "boundless-bio-pages-api-openapi.yml",
+    "boundless-bio-posts-api-openapi.yml",
+    "boundless-bio-search-api-openapi.yml",
+    "boundless-bio-settings-api-openapi.yml",
+    "boundless-bio-taxonomy-api-openapi.yml",
+    "boundless-bio-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "boundless-bio-comments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-leadership-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-settings-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boundless-bio-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

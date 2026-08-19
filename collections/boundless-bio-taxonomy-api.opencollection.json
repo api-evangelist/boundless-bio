@@ -1,0 +1,575 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boundless Bio Content API (WordPress REST wp/v2) Taxonomy API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by term attribute."
+              },
+              {
+                "name": "hide_empty",
+                "value": "",
+                "type": "query",
+                "description": "Whether to hide terms not assigned to any posts."
+              },
+              {
+                "name": "parent",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to terms assigned to a specific parent."
+              },
+              {
+                "name": "post",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to terms assigned to a specific post."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to terms with one or more specific slugs."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/categories"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/categories"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/categories/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the term."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/categories/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/categories/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/categories/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/categories/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/categories/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/categories/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/categories/{id}"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/categories/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the term."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Required to be true, as terms do not support trashing."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DELETE /wp/v2/categories/{id}"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by term attribute."
+              },
+              {
+                "name": "hide_empty",
+                "value": "",
+                "type": "query",
+                "description": "Whether to hide terms not assigned to any posts."
+              },
+              {
+                "name": "post",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to terms assigned to a specific post."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to terms with one or more specific slugs."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/tags"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/tags"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/tags/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the term."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/tags/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/tags/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/tags/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/tags/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/tags/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/tags/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/tags/{id}"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/tags/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the term."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Required to be true, as terms do not support trashing."
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DELETE /wp/v2/tags/{id}"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/taxonomies",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to taxonomies associated with a specific post type."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/taxonomies"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/taxonomies/{taxonomy}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/taxonomies/:taxonomy",
+            "params": [
+              {
+                "name": "taxonomy",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "taxonomy",
+                "value": "",
+                "type": "query",
+                "description": "An alphanumeric identifier for the taxonomy."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/taxonomies/{taxonomy}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

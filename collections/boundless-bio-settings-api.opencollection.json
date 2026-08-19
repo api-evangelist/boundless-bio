@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boundless Bio Content API (WordPress REST wp/v2) Settings API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/settings"
+          },
+          "docs": "GET /wp/v2/settings"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "POST /wp/v2/settings"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PUT /wp/v2/settings"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://boundlessbio.com/wp-json/wp/v2/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "PATCH /wp/v2/settings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
