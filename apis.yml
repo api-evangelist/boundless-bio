@@ -190,6 +190,8 @@ apis:
   humanURL: https://boundlessbio.com/who-we-are/
   baseURL: https://boundlessbio.com/wp-json/wp/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
