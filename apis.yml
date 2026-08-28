@@ -22,6 +22,18 @@ x-type: company
 x-source: harvest:secondary-market
 x-tier: profiled
 x-tier-reason: enrichment-pipeline
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://boundlessbio.com/wp-content/uploads/2019/09/logo-boundless-bio.png
 specificationVersion: '0.23'
 created: '2026-08-08'
