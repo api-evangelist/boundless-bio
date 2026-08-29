@@ -739,6 +739,12 @@ paths:
       - applicationPassword: []
 components:
   responses:
+    Unauthorized:
+      description: Authentication required or rejected (rest_forbidden / rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpError'
     NotFound:
       description: No route or resource matched (rest_no_route / rest_post_invalid_id).
       content:
@@ -747,12 +753,6 @@ components:
             $ref: '#/components/schemas/WpError'
     BadRequest:
       description: Invalid parameter (rest_invalid_param).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WpError'
-    Unauthorized:
-      description: Authentication required or rejected (rest_forbidden / rest_not_logged_in).
       content:
         application/json:
           schema:

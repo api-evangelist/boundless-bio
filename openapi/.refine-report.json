@@ -28,16 +28,6 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "boundless-bio-comments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-leadership-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-settings-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boundless-bio-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
   "skipped": []
