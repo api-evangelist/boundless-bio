@@ -1,16 +1,7 @@
 {
   "provider": "boundless-bio",
   "sources": [
-    "boundless-bio-comments-api-openapi.yml",
-    "boundless-bio-discovery-api-openapi.yml",
-    "boundless-bio-leadership-api-openapi.yml",
-    "boundless-bio-media-api-openapi.yml",
-    "boundless-bio-pages-api-openapi.yml",
-    "boundless-bio-posts-api-openapi.yml",
-    "boundless-bio-search-api-openapi.yml",
-    "boundless-bio-settings-api-openapi.yml",
-    "boundless-bio-taxonomy-api-openapi.yml",
-    "boundless-bio-users-api-openapi.yml"
+    "_ae-authored/boundless-bio-content-openapi.yml"
   ],
   "outputs": [
     "boundless-bio-comments-api-openapi.yml",
@@ -28,7 +19,20 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "boundless-bio-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "boundless-bio-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-leadership-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boundless-bio-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

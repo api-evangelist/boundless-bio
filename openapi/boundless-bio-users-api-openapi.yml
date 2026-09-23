@@ -3,13 +3,7 @@ info:
   title: Boundless Bio Content API (WordPress REST wp/v2) Users API
   version: wp/v2
   summary: 'Public read surface of boundlessbio.com content: corporate pages, the Leadership directory (board of directors, executive leadership and scientific founders), the media library, taxonomies and site search.'
-  description: 'Boundless Bio publishes boundlessbio.com on WordPress (hosted on WP Engine), which exposes the WordPress REST API at https://boundlessbio.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s corporate pages (9 published), its `who-we-are` Leadership custom post type (27 published, categorized as board-of-directors, leadership and scientific-founders), the media library (255 items), taxonomies and a site-wide search endpoint as JSON.
-
-
-    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://boundlessbio.com/wp-json/ on 2026-08-08 - every path, method and parameter below is taken verbatim from that descriptor. Boundless Bio does not publish an OpenAPI definition of its own, and this is not a product API: it is the content API the CMS exposes. Boundless Bio is a clinical-stage oncology company and ships no developer program, no product API and no SDKs. Write operations exist on these routes but require authentication (WordPress Application Passwords over HTTP Basic).
-
-
-    Observed anonymously on 2026-08-08: /wp/v2/posts returns 0 items (the company publishes no blog on this host; investor news is served from investors.boundlessbio.com, a Q4/gcs-web investor site). /wp/v2/settings and the wp-abilities/v1 registry return 401 rest_forbidden. There is no MCP namespace on this host.'
+  description: Boundless Bio publishes boundlessbio.com on WordPress (hosted on WP Engine), which exposes the WordPress REST API at https://boundlessbio.com/wp-json/.
   contact:
     name: Boundless Bio
     url: https://boundlessbio.com/
@@ -895,14 +889,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/WpError'
-    NotFound:
-      description: No route or resource matched (rest_no_route / rest_post_invalid_id).
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/WpError'
-    BadRequest:
-      description: Invalid parameter (rest_invalid_param).
+    NotFound:
+      description: No route or resource matched (rest_no_route / rest_post_invalid_id).
       content:
         application/json:
           schema:
