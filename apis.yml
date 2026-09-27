@@ -65,168 +65,20 @@ tags:
 - Research
 - Content
 apis:
-- aid: boundless-bio:boundless-bio-comments-api
-  name: Boundless Bio Comments API
-  description: The Comments API from Boundless Bio — 2 operation(s) for comments.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
+- aid: boundless-bio:boundlessbio-com-website-wordpress-rest
+  name: Boundless Bio Website (WordPress REST)
+  description: 'The public WordPress REST API (wp-json) of the Boundless Bio website at boundlessbio.com:
+    the route index of the site''s content management system, catalogued as one site surface rather than
+    as separate APIs.'
+  baseURL: https://boundlessbio.com/wp-json
   tags:
-  - Comments
+  - WordPress
+  x-surface: platform-generated
   properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-comments-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-discovery-api
-  name: Boundless Bio Discovery API
-  description: The Discovery API from Boundless Bio — 4 operation(s) for discovery.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Discovery
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-discovery-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-leadership-api
-  name: Boundless Bio Leadership API
-  description: The Leadership API from Boundless Bio — 2 operation(s) for leadership.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Leadership
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-leadership-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-media-api
-  name: Boundless Bio Media API
-  description: The Media API from Boundless Bio — 3 operation(s) for media.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Media
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-media-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-pages-api
-  name: Boundless Bio Pages API
-  description: The Pages API from Boundless Bio — 2 operation(s) for pages.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Pages
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-pages-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-posts-api
-  name: Boundless Bio Posts API
-  description: The Posts API from Boundless Bio — 2 operation(s) for posts.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Posts
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-posts-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-search-api
-  name: Boundless Bio Search API
-  description: The Search API from Boundless Bio — 1 operation(s) for search.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-search-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-settings-api
-  name: Boundless Bio Settings API
-  description: The Settings API from Boundless Bio — 1 operation(s) for settings.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Settings
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-settings-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-taxonomy-api
-  name: Boundless Bio Taxonomy API
-  description: The Taxonomy API from Boundless Bio — 6 operation(s) for taxonomy.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - Taxonomy
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-taxonomy-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
-- aid: boundless-bio:boundless-bio-users-api
-  name: Boundless Bio Users API
-  description: The Users API from Boundless Bio — 3 operation(s) for users.
-  humanURL: https://boundlessbio.com/who-we-are/
-  baseURL: https://boundlessbio.com/wp-json/wp/v2
-  tags:
-  - User
-  tags_raw:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/boundless-bio-users-api-openapi.yml
-  - type: DataModel
-    url: data-model/boundless-bio-data-model.yml
-  - type: ErrorCatalog
-    url: errors/boundless-bio-problem-types.yml
-  - type: Examples
-    url: examples/boundless-bio-examples.yml
+  - type: Documentation
+    url: https://boundlessbio.com/wp-json
+  x-platform: wordpress
+  x-platform-surface: rest
 x-enrichment:
   date: '2026-08-08'
   status: enriched
@@ -286,3 +138,7 @@ common:
   url: skills/_index.yml
 - type: SecondaryMarket
   url: https://forgeglobal.com/boundless-bio_stock/
+- type: DataModel
+  url: data-model/boundless-bio-data-model.yml
+- type: ErrorCatalog
+  url: errors/boundless-bio-problem-types.yml
