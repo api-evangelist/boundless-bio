@@ -64,5 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Boundless Bio is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/boundless-bio_stock/
+Boundless Bio (Nasdaq: BOLD) is a San Diego, California based clinical-stage, next-generation precision oncology company founded in 2018 to target extrachromosomal DNA (ecDNA) — circular, centromere-free DNA that carries high copy-number oncogene amplifications and is observed in roughly 17% of cancer patients, driving tumor heterogeneity and resistance to targeted therapy. Its proprietary Spyglass discovery platform, built on a suite of ecDNA+/- tumor models plus molecular analytics and imaging, identifies targets essential to ecDNA function, which the company drugs with small-molecule ecDNA-directed therapies (ecDTx). The clinical pipeline is led by BBI-940, a kinesin inhibitor targeting ecDNA segregation, in the Phase 1 KOMODO-1 trial in ER+/HER2- and TNBC-LAR breast cancer opened in February 2026, with earlier CHK1 (replication stress) and RNR (DNA assembly and repair) programs behind it; ECHO, its ecDNA diagnostic algorithm, reads ecDNA off routine clinical next-generation sequencing and is described by the company as the first ecDNA diagnostic used in clinical trials. Boundless Bio raised a $100M Series C co-led by Leaps by Bayer and RA Capital and listed on Nasdaq in 2024. It publishes no developer program, no product API, no SDKs and no API documentation of any kind; the only machine-readable surface on boundlessbio.com is the WordPress REST API (wp/v2), anonymously readable, which serves the corporate pages, the Leadership directory and the media library as JSON.
+
+**Areas:** Company · Biotechnology · Oncology · Precision Medicine · Drug Discovery · Life Sciences · Pharmaceuticals · Clinical Trials · Genomics · Diagnostics · Research · Content
+
+## Boundless Bio on APIs.io
+
+Everything profiled for Boundless Bio is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/boundless-bio/](https://apis.io/providers/boundless-bio/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Boundless Bio Website (WordPress REST)](https://apis.io/apis/boundless-bio/boundlessbio-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Boundless Bio website at boundlessbio.com: the route index of the site's content management system,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Boundless Bio Agentic Access](https://apis.io/agentic-access/boundless-bio/boundless-bio-agentic-access/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-comments-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-discovery-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-leadership-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-media-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-pages-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-posts-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-search-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-settings-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-taxonomy-api/)
+- [Moved to /providers/boundless-bio/](https://apis.io/collections/boundless-bio/open-boundless-bio-users-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Boundless Bio Content Overlay](https://apis.io/overlays/boundless-bio/boundless-bio-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Boundless Bio Authentication](https://apis.io/security/boundless-bio/boundless-bio-authentication/)
+- [Boundless Bio Domain Security](https://apis.io/security/boundless-bio/boundless-bio-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://boundlessbio.com/)
+- [Support](https://boundlessbio.com/contact/)
+- [Terms of service](https://boundlessbio.com/terms-of-use/)
+- [Privacy policy](https://boundlessbio.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 17.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 1.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 21.1 |
+
+**Agent readiness 5.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.5** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/boundless-bio/](https://apis.io/providers/boundless-bio/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Boundless Bio: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/boundless-bio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
